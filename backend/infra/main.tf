@@ -1,6 +1,14 @@
-# Configure the AWS provider
+terraform {
+  required_providers {
+    aws = {
+      version = ">= 4.0.0"
+      source  = "hashicorp/aws"
+    }
+  }
+}
+
 provider "aws" {
-  region = "us-east-1"
+  region = "ca-central-1"
 }
 
 # Create an EC2 instance to receive the video feed
@@ -47,6 +55,13 @@ resource "aws_cloudfront_distribution" "video_stream" {
     domain_name = aws_instance.video_feed_server.public_ip
     origin_id   = "video-feed-server"
   }
+
+  restrictions {
+    geo_restriction {
+      restriction_type = "none"
+    }
+  }
+
 
   enabled = true
 
@@ -114,7 +129,8 @@ resource "aws_iam_role" "lambda_exec" {
 # Attach policies to the IAM role
 resource "aws_iam_policy_attachment" "lambda_exec_policy" {
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
-  role       = aws_iam_role.lambda_exec.name
+  roles      = aws_iam_role.lambda_exec.name
+  name       = "lambda-exec-policy"
 }
 
 # Create an API Gateway method to invoke the Lambda function
