@@ -1,14 +1,27 @@
-import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
-import Video from "./components/Video";
+import Tabs from "./navigation/Tabs";
+import { NavigationContainer } from "@react-navigation/native";
+import React, { useEffect, useState } from "react";
+import SplashScreen from "./screens/SplashScreen";
 
 export default function App() {
+  const [isLoading, setIsLoading] = useState(true);
+  const [isSignedIn, setIsSignedIn] = useState(false);
+
+  useEffect(() => {
+    console.log("App.js useEffect");
+    setTimeout(() => {
+      setIsSignedIn(true);
+    }, 5000);
+  }, []);
+
+  if (isLoading) {
+    return <SplashScreen />;
+  }
   return (
-    <View style={styles.container}>
-      <Text>Hello!</Text>
-      <Video />
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer style={styles.container}>
+      {!isSignedIn ? <Text>Loading...</Text> : <Tabs />}
+    </NavigationContainer>
   );
 }
 
