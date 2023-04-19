@@ -1,6 +1,7 @@
 import cv2
 import os
 import face_recognition
+import threading
 
 
 def facial_recognition_handler():
@@ -25,9 +26,11 @@ def facial_recognition_handler():
         ret, frame = video_capture.read()
 
         # Find all the faces in the current frame
+
         face_locations = face_recognition.face_locations(
             frame, number_of_times_to_upsample=1)
-        face_encodings = face_recognition.face_encodings(frame, face_locations)
+        face_encodings = face_recognition.face_encodings(
+            frame, face_locations)
 
         # Loop through each face in this frame of video
         for (top, right, bottom, left), face_encoding in zip(face_locations, face_encodings):
