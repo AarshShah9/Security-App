@@ -8,6 +8,7 @@ import Signing from "./screens/Signing";
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [isSignedIn, setIsSignedIn] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
 
   useEffect(() => {
     console.log("App.js useEffect");
@@ -22,7 +23,11 @@ export default function App() {
   }
   return (
     <NavigationContainer style={styles.container}>
-      {!isSignedIn ? <Signing setIsSignedIn={setIsSignedIn} /> : <Tabs />}
+      {!isSignedIn ? (
+        <Signing setIsSignedIn={setIsSignedIn} />
+      ) : (
+        <Tabs setDarkMode={setDarkMode} darkMode={darkMode} />
+      )}
     </NavigationContainer>
   );
 }

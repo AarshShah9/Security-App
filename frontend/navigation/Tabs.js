@@ -15,7 +15,7 @@ import React from "react";
 
 const Tab = createBottomTabNavigator();
 
-export default function Tabs() {
+export default function Tabs({ setDarkMode, darkMode }) {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
@@ -34,7 +34,7 @@ export default function Tabs() {
 
           return <FontAwesomeIcon icon={iconName} size={size} color={color} />;
         },
-        tabBarActiveTintColor: "#2196f3",
+        tabBarActiveTintColor: "red",
         tabBarInactiveTintColor: "gray",
         tabBarLabelStyle: {
           fontSize: 14,
@@ -46,14 +46,17 @@ export default function Tabs() {
         tabBarLabelStyle: {
           display: "none",
         },
-
         // headerShown: false,
       })}
     >
       <Tab.Screen name="Home" component={HomeScreen} />
       <Tab.Screen name="Videos" component={VideoScreen} />
       <Tab.Screen name="LiveStream" component={LiveStreamScreen} />
-      <Tab.Screen name="Settings" component={SettingsScreen} />
+      <Tab.Screen
+        name="Settings"
+        component={SettingsScreen}
+        initialParams={{ setDarkMode, darkMode }}
+      />
     </Tab.Navigator>
   );
 }
