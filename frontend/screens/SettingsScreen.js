@@ -21,6 +21,15 @@ export default function SettingsScreen() {
 
   return (
     <View style={{ padding: 16 }}>
+      <View style={{ marginBottom: 16 }}>
+        <Text style={{ fontSize: 16, fontWeight: "bold", marginBottom: 8 }}>
+          About
+        </Text>
+        <Text style={{ fontSize: 14 }}>
+          This is a comprehensive security application created by Aarsh Shah.
+        </Text>
+      </View>
+
       <View
         style={{
           flexDirection: "row",
@@ -46,15 +55,6 @@ export default function SettingsScreen() {
           value={notificationsEnabled}
           onValueChange={toggleNotifications}
         />
-      </View>
-
-      <View style={{ marginBottom: 16 }}>
-        <Text style={{ fontSize: 16, fontWeight: "bold", marginBottom: 8 }}>
-          About
-        </Text>
-        <Text style={{ fontSize: 14 }}>
-          This is a comprehensive security application created by Aarsh Shah.
-        </Text>
       </View>
 
       {/* add additional settings sections here as needed */}
