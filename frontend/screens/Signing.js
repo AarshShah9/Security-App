@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Image } from "react-native";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import React from "react";
 
@@ -10,6 +10,16 @@ export default function Signing({ setIsSignedIn }) {
 
   return (
     <View style={styles.container}>
+      <Image
+        source={require("../assets/SecurityAppIcon.png")}
+        style={{
+          width: 200,
+          height: 200,
+          resizeMode: "contain",
+          alignSelf: "center",
+          marginBottom: 250,
+        }}
+      />
       <Text
         style={{
           fontSize: 20,
@@ -34,7 +44,6 @@ export default function Signing({ setIsSignedIn }) {
         backgroundColor="white"
         color="#4285F4"
         onPress={loginWithGoogle}
-        style={{}}
       >
         Sign in with Google
       </FontAwesome.Button>
