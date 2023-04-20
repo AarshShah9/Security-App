@@ -3,6 +3,7 @@ import Tabs from "./navigation/Tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import React, { useEffect, useState } from "react";
 import SplashScreen from "./screens/SplashScreen";
+import Signing from "./screens/Signing";
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -10,8 +11,9 @@ export default function App() {
 
   useEffect(() => {
     console.log("App.js useEffect");
+
     setTimeout(() => {
-      setIsSignedIn(true);
+      setIsLoading(false);
     }, 5000);
   }, []);
 
@@ -20,7 +22,7 @@ export default function App() {
   }
   return (
     <NavigationContainer style={styles.container}>
-      {!isSignedIn ? <Text>Loading...</Text> : <Tabs />}
+      {!isSignedIn ? <Signing setIsSignedIn={setIsSignedIn} /> : <Tabs />}
     </NavigationContainer>
   );
 }
@@ -31,5 +33,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
+    backgroundColor: "#f0f0f0",
   },
 });

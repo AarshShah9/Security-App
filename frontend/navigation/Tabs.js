@@ -1,4 +1,4 @@
-import { View, Text } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import HomeScreen from "../screens/HomeScreen";
 import VideoScreen from "../screens/VideoScreen";
 import LiveStreamScreen from "../screens/LiveStreamScreen";
@@ -17,3 +17,9 @@ export default function Tabs() {
     </Tab.Navigator>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: "#f2f4f5",
+  },
+});
